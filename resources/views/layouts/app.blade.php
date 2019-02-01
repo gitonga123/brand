@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
     <meta name="description" content="The Branding">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 
     <!-- CSRF Token -->
@@ -36,6 +37,13 @@
           font-size: 3.5rem;
         }
       }
+      .or-seperator i {
+        padding: 0 10px;
+        background: #f7f7f7;
+        position: relative;
+        top: -11px;
+        z-index: 1;
+      } 
     </style>
 </head>
 <body>
@@ -83,7 +91,7 @@
                 <footer class="pt-4 my-md-5 pt-md-5 border-top">
                     <div class="row">
                         <div class="col-12 col-md">
-                        <img class="mb-2" src="{{ asset('img/bg3.jpg') }}" alt="" width="24" height="24">
+                        <img class="mb-2" src="{{ asset('/img/logo.png') }}" alt="" width="24" height="24">
                         <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
                         </div>
                         <div class="col-6 col-md">

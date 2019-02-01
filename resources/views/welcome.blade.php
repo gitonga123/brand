@@ -9,7 +9,9 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect fill="#777" width="100%" height="100%"></rect></svg>
+        <img class="d-block" src="{{ asset('img/bg1.jpg') }}" alt="Second slide">
+
+        {{-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="{{ asset('img/bg1.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect fill="#777" width="100%" height="100%"></rect></svg> --}}
         <div class="container">
           <div class="carousel-caption text-left">
             <h1>Example headline.</h1>
@@ -19,7 +21,9 @@
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect fill="#777" width="100%" height="100%"></rect></svg>
+        {{-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="{{ asset('img/bg3.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect fill="#777" width="100%" height="100%"></rect></svg> --}}
+        <img class="d-block" src="{{ asset('img/bg3.jpg') }}" alt="Second slide">
+
         <div class="container">
           <div class="carousel-caption">
             <h1>Another example headline.</h1>
@@ -29,7 +33,8 @@
         </div>
       </div>
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect fill="#777" width="100%" height="100%"></rect></svg>
+        <img class="d-block" src="{{ asset('img/bg4.jpg') }}" alt="Second slide">
+        {{-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="{{ asset('img/bg4.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect fill="#777" width="100%" height="100%"></rect></svg> --}}
         <div class="container">
           <div class="carousel-caption text-right">
             <h1>One more for good measure.</h1>
