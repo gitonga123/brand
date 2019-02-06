@@ -62,6 +62,20 @@
                         <a class="p-2 text-dark" href="#">Support</a>
                         <a class="p-2 text-dark" href="#">Pricing</a>
                         <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>
+                        {{-- <button type="button" class="p-2 btn btn-lg btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">
+                         My Account
+                        </button> --}}
+
+                        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>
+                                {{-- <div class="modal-content">
+                                    <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>
+                                    <a class="btn btn-primary btn-outline-primary" href="{{ route('login')}}">Sign In</a>
+                                </div> --}}
+                            </div>
+                        </div>
+                        
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -142,5 +156,7 @@
 
     <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
     <script src="{{ asset('js/plugins/bootstrap-switch.js') }}"></script>
+
+    <script></script>
 </body>
 </html>

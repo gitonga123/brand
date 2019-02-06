@@ -12,7 +12,7 @@ return [
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
-    */
+ */
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
@@ -34,5 +34,10 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'twitter' => [
+        'client_id' => env('TWITTER_ID'),
+        'client_secret' => env('TWITTER_SECREY'),
+        'redirect' => 'http://localhost:9090/callback/twitter',
+    ]
 
 ];

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="card">
   <div class="card-body">
       <h3 class="text-center card-title">Register</h3>
@@ -28,7 +27,7 @@
                        
                         <div class="text-center social-btn">
                             <a href="/register" class="btn btn-primary"><i class="fab fa-facebook"></i>&nbsp; Facebook</a>
-                            <a href="#" class="btn btn-info"><i class="fab fa-twitter"></i>&nbsp; Twitter</a>
+                        <a href="{{ url('/auth/redirect/twitter') }}" class="btn btn-info"><i class="fab fa-twitter"></i>&nbsp; Twitter</a>
                             <a href="#" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a>
                         </div>
                     </div>
@@ -44,7 +43,7 @@
                                 <input type="password" class="form-control border-danger" id="exampleInputPassword1" placeholder="Password">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                        </form>
                     </div>
                 </div>
             </div>
