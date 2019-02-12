@@ -17,7 +17,7 @@ class CreateSocialTwitterAccountsTable extends Migration
             'social_twitter_accounts',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('user_id');
+                $table->integer('user_id')->nullable();
                 $table->string('provider_user_id');
                 $table->string('provider');
                 $table->timestamps();

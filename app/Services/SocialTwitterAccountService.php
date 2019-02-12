@@ -28,15 +28,14 @@ class SocialTwitterAccountService
           ]
         );
 
-        $account = new SocialTwitterAccount([
-          'provider_user_id' => $providerUser->getId(),
-          'provider' => 'twitter',
-          'user_id' => $user->id
-        ]);
+        // $account = new SocialTwitterAccount([
+        //   'provider_user_id' => $providerUser->getId(),
+        //   'provider' => 'twitter',
+        //   'user_id' => $user->id
+        // ]);
       }
-
-      $account->user()->associate($user);
-      $account->save();
+      // $account->user()->associate($user);
+      // $account->save();
 
       return $user;
     }
