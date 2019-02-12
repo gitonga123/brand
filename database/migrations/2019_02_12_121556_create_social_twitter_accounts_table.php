@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateSocialTwitterAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,12 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create(
-            'users',
+            'social_twitter_accounts',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');
-                $table->string('email')->unique();
-                $table->string('password');
-                $table->rememberToken()->nullable();
-                $table->string('provider')->nullable();
-                $table->string('provider_id')->nullable();
-                $table->json('settings')->nullable();
-                $table->timestamp('email_verified_at')->nullable();
+                $table->integer('user_id');
+                $table->string('provider_user_id');
+                $table->string('provider');
                 $table->timestamps();
             }
         );
@@ -37,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('social_twitter_accounts');
     }
 }

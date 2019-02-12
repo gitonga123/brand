@@ -17,6 +17,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'provider', 'provider_id'
     ];
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'settings' => 'array'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

@@ -2,48 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
-use Validator, Redirect, Response, File;
-use Socialite;
-use Auth;
-use App\User;
-use Exception;
+use App\Http\Controllers\Controller;
+use App\Social\FacebookServiceProvider;
+use App\Social\TwitterServiceProvider;
+use GuzzleHttp\Exception\ClientException;
+use Laravel\Socialite\Two\InvalidStateException;
+use League\OAuth1\Client\Credentials\Credentials;
+use League\OAuth1\Client\Credentials\CredentialsException;
+
 
 class SocialController extends Controller
 {
+    protected $providers = [
+        'facebook' => FacebookServiceProvider::class,
+        'twitter' => TwitterServiceProvider::class,
+    ];
     /**
-     * Redirect
-     * 
-     * @param $provider
-     * 
-     * @return Socialite
+     * Create a new controller instance
+     *
+     * @return void
      */
-    public function redirect($provider)
+    public function __construct()
     {
-        return Socialite::driver($provider)->redirect();
+        $this->middleware('guest');
     }
 
-    public function callback($provider)
+    /**
+     * Redirect the user to provider authentication page
+     * 
+     * @param  string $provider
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function redirect(string $provider)
     {
-        $getInfo = Socialite::driver($provider)->user();
-        $user = $this->createUser($getInfo, $provider);
-        auth()->login($user);
-
-        return redirect()->to('/home');
+        return (new $this->providers[$provider])->redirect();
     }
 
-    public function createUser()
+    /**
+     * Handle provider response
+     * 
+     * @param  string $provider
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback(string $provider)
     {
-        $user = User::where('provider_id', $getInfo->id)->first();
-
-        if (!user) {
-            $user = User::create([
-                'name' => $getInfo->name,
-                'email' => $getInfo->email,
-                'provider' => $provider,
-                'provider_id' => $getInfo->id
-            ]);
-            return $user;
+        try {
+            return (new $this->providers[$provider])->handle();
+        } catch (InvalidStateException $e) {
+            return $this->redirectToProvider($provider);
+        } catch (ClientException $e) {
+            return $this->redirectToProvider($provider);
+        } catch (CredentialsException $e) {
+            return $this->redirectToProvider($provider);
         }
     }
 
