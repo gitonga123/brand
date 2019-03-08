@@ -38,6 +38,21 @@ return [
         'client_id' => env('TWITTER_ID'),
         'client_secret' => env('TWITTER_SECRECY'),
         'redirect' => 'http://localhost:9090/auth/twitter/callback',
+    ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_ID'),
+        'client_secret' => env('FACEBOOK_SECRECY'),
+        'redirect' => 'http://localhost:9090/auth/facebook/callback',
+    ],
+    'github' => [
+        'client_id' => env('GITHUB_ID'),
+        'client_secret' => env('GITHUB_SECRECY'),
+        'redirect' => 'http://localhost:9090/auth/github/callback',
+    ],
+    'google' => [
+        'client_id' => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRECY'),
+        'redirect' => 'http://localhost:9090/auth/google/callback',
     ]
 
 ];

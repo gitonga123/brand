@@ -61,41 +61,29 @@
                         <a class="p-2 text-dark" href="#">Enterprise</a>
                         <a class="p-2 text-dark" href="#">Support</a>
                         <a class="p-2 text-dark" href="#">Pricing</a>
-                        <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>
-                        {{-- <button type="button" class="p-2 btn btn-lg btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">
-                         My Account
-                        </button> --}}
-
-                        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm">
-                                <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>
-                                {{-- <div class="modal-content">
-                                    <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>
-                                    <a class="btn btn-primary btn-outline-primary" href="{{ route('login')}}">Sign In</a>
-                                </div> --}}
-                            </div>
-                        </div>
-                        
+                        <a class="btn btn-primary btn-outline-primary" href="{{ route('register')}}">Sign up</a>                        
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="{{ route('logout') }}" class="btn btn-outline-danger" 
-                                        onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    
-                                    </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}" class="btn btn-outline-danger" 
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     @endguest
                 </nav>
             </div>        

@@ -3,12 +3,12 @@
 @section('content')
 <div class="card">
   <div class="card-body">
-      <h3 class="text-center card-title">Register</h3>
+      <h3 class="text-center card-title"></h3>
     <div class="row">
         <div class="col-lg-10 col-md-10 col-sm-10 offset-1">
             
             <div class="row">
-                <div class="col-lg-6 col-sm-6 col-md-2G">
+                <div class="col-lg-6 col-sm-6 col-md-6">
                     <h5><i class="fas fa-chart-line" style="color: #e91e63"></i>&nbsp&nbsp Marketing</h5>
                     <p>
                         We've created the marketing campaign of the website. It was a very interesting collaboration.
@@ -22,28 +22,14 @@
                         There is also a Fully Customizable CMS Admin Dashboard for this product.
                     </p>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card-header" style="margin-left: -10%">
-                       
-                        <div class="text-center social-btn">
-                            <a href="/register" class="btn btn-primary"><i class="fab fa-facebook"></i>&nbsp; Facebook</a>
-                        <a href="{{ url('/auth/redirect/twitter') }}" class="btn btn-info"><i class="fab fa-twitter"></i>&nbsp; Twitter</a>
-                            <a href="#" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a>
-                        </div>
-                    </div>
-                    <div>
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control border-danger" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                <div class="col-lg-4 col-md-4 offset-md-1 offset-lg-1">
+                    <h5 class="text-center card-title mb-1">Login Options</h5>
+                    <div class="list-group social-btn">
+                        <li class="list-group"><a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-primary"><i class="fab fa-facebook"></i>&nbsp; Facebook</a></li>
+                        <li class="list-group"><a href="{{ url('/auth/redirect/twitter') }}" class="btn btn-info"><i class="fab fa-twitter"></i>&nbsp; Twitter</a></li>
+                        <li class="list-group"><a href="{{ url('/auth/redirect/github') }}" class="btn btn-dark"><i class="fab fa-github"></i>&nbsp; GitHub</a></li>
+                        <li class="list-group"><a href="{{ url('/auth/redirect/google') }}" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a></li>
+                        <li class="list-group"><a href="#" class="btn btn-primary"><i class="fab fa-linkedin"></i>&nbsp; LinkedIn</a></li>
                     </div>
                 </div>
             </div>

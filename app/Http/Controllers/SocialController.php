@@ -2,63 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Social\FacebookServiceProvider;
-use App\Social\TwitterServiceProvider;
-use GuzzleHttp\Exception\ClientException;
-use Laravel\Socialite\Two\InvalidStateException;
-use League\OAuth1\Client\Credentials\Credentials;
-use League\OAuth1\Client\Credentials\CredentialsException;
-
+use Validator, Redirect, Response, File;
+use Socialite;
+use App\User;
 
 class SocialController extends Controller
 {
-    protected $providers = [
-        'facebook' => FacebookServiceProvider::class,
-        'twitter' => TwitterServiceProvider::class,
-    ];
-    /**
-     * Create a new controller instance
-     *
-     * @return void
-     */
-    public function __construct()
+    public function redirect($provider)
     {
-        $this->middleware('guest');
+        return Socialite::driver($provider)->redirect();
     }
 
-    /**
-     * Redirect the user to provider authentication page
-     * 
-     * @param  string $provider
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function redirect(string $provider)
+    public function callback($provider)
     {
-        return (new $this->providers[$provider])->redirect();
+
+        $getInfo = Socialite::driver($provider)->user();
+        $user = $this->createUser($getInfo, $provider);
+
+        auth()->login($user);
+
+        return redirect()->to('/home');
+
     }
 
-    /**
-     * Handle provider response
-     * 
-     * @param  string $provider
-     * @return \Illuminate\Http\Response
-     */
-    public function handleProviderCallback(string $provider)
+    private function createUser($getInfo, $provider)
     {
-        try {
-            return (new $this->providers[$provider])->handle();
-        } catch (InvalidStateException $e) {
-            return $this->redirectToProvider($provider);
-        } catch (ClientException $e) {
-            return $this->redirectToProvider($provider);
-        } catch (CredentialsException $e) {
-            return $this->redirectToProvider($provider);
+
+        $user = User::where('provider_id', $getInfo->id)->first();
+
+        if ($provider == 'facebook' || $provider == 'github' || $provider == 'google') {
+            if (!$user) {
+                $user = User::create(
+                    [
+                        'name' => $getInfo->name,
+                        'email' => $getInfo->email,
+                        'password' => bcrypt(str_random(10)),
+                        'provider' => $provider,
+                        'provider_id' => $getInfo->id
+                    ]
+                );
+            }
+        } else {
+            if (!$user) {
+                $user = User::create(
+                    [
+                        'name' => $getInfo->name,
+                        'email' => strtolower($getInfo->nickname) . "@gmail.com",
+                        'password' => bcrypt(str_random(10)),
+                        'provider' => $provider,
+                        'provider_id' => $getInfo->id
+                    ]
+                );
+            }
         }
+        return $user;
     }
-
-
 }
