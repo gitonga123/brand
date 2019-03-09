@@ -21,7 +21,7 @@ class ExampleTest extends TestCase
         $this->withoutExceptionHandling();
 
         $this->post(
-            route('question.store'),
+            route('questions.store'),
             [
                 "title" => "What's Your Name?",
                 "published" => 2,
@@ -42,18 +42,21 @@ class ExampleTest extends TestCase
 
     /**
      * Test if an answer can be created
+     * 
+     * @return void
      */
     public function testCanCreateAnswer()
     {
         $this->withoutExceptionHandling();
 
         $this->post(
-            route("answer.create"),
+            route("answers.store"),
             [
                 'title' => "James Doe",
                 "correct" => 1,
             ]
-        )->assertRedirect(route('answer.index'));
+        )->assertSessionHas('success', 'Answer Created Successfully')
+            ->assertRedirect(route('answers.index'));
 
         $this->assertDatabaseHas(
             'answers',

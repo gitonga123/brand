@@ -35,5 +35,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
-Route::resource('question', 'QuestionController');
-
+Route::resource('questions', 'QuestionController');
+Route::resource('answers', 'AnswerController');
