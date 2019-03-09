@@ -92,7 +92,7 @@ class ExampleTest extends TestCase
     }
 
     /**
-     * Test if a user can be updated
+     * Test if a question can be updated
      * 
      * @return void
      */
@@ -114,6 +114,36 @@ class ExampleTest extends TestCase
             'questions',
             [
                 'title' => "When did Kenya Gain Independence?"
+            ]
+        );
+    }
+
+    /**
+     * Test if an answer can be updated
+     * 
+     * @return void
+     */
+    public function testCanUpdateAnswers()
+    {
+        $this->withoutExceptionHandling();
+
+        $answer = factory(Answer::class)->create();
+
+        $this->put(
+            route('answers.update', ['answer' => $answer->id]),
+            [
+                'title' => "1983",
+                'correct' => 1
+            ]
+        )->assertSessionHas('success', "Answer Updated Successfully")
+            ->assertRedirect(route('answers.show', ['answers', $answer->id]));
+
+        $this->assertDatabaseHas(
+            'answers',
+            [
+                'id' => $answer->id,
+                'title' => "1983",
+                "correct" => 1
             ]
         );
     }

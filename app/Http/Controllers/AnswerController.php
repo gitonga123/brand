@@ -75,7 +75,11 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
-        //
+        $input = $request->only('title', 'correct');
+        $answer->fill($input)->save();
+
+        session()->flash('success', "Answer Updated Successfully");
+        return redirect()->route('answers.show', ['answers', $answer->id]);
     }
 
     /**
