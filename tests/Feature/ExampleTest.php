@@ -90,4 +90,31 @@ class ExampleTest extends TestCase
             );
         }
     }
+
+    /**
+     * Test if a user can be updated
+     * 
+     * @return void
+     */
+    public function testCanUpdateQuestion()
+    {
+        $this->withoutExceptionHandling();
+
+        $question = factory(Question::class)->create();
+
+        $this->put(
+            route('questions.update', ['question' => $question->id]),
+            [
+                'title' => "When did Kenya Gain Independence?"
+            ]
+        )->assertSessionHas('success', "Question Updated Successfully")
+            ->assertRedirect(route('questions.show', ['question', $question->id]));
+
+        $this->assertDatabaseHas(
+            'questions',
+            [
+                'title' => "When did Kenya Gain Independence?"
+            ]
+        );
+    }
 }

@@ -72,7 +72,11 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $input = $request->only('title', 'points', 'published');
+        $question->fill($input)->save();
+
+        session()->flash('success', "Question Updated Successfully");
+        return redirect()->route('questions.show', ['question', $question->id]);
     }
 
     /**
