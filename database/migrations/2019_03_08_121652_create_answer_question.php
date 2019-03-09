@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAnswerQuestion extends Migration
+class CreateAnswerQuestion extends Migration
 {
     /**
      * Run the migrations.
@@ -33,6 +33,6 @@ class CreateTableAnswerQuestion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_answer_question');
+        Schema::dropIfExists('answer_question');
     }
 }
