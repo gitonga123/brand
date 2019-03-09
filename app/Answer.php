@@ -14,6 +14,6 @@ class Answer extends Model
         return $this->belongsToMany(
             Question::class,
             'answer_question'
-        )->withPivot('correct_answer');
+        )->withPivot('correct_answer')->withTimestamps();
     }
 }

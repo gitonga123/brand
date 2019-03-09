@@ -34,12 +34,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/auth/{provider}/callback', 'SocialController@callback');
-// Route::get(
-//     'auth/redirect/{provider}',
-//     'SocialAuthTwitterController@redirect'
-// );
 
-// Route::get(
-//     'auth/{provider}/callback',
-//     'SocialAuthTwitterController@callback'
-// );
+Route::resource('question', 'QuestionController');
+
