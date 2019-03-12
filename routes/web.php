@@ -37,3 +37,4 @@ Route::get('/auth/{provider}/callback', 'SocialController@callback');
 
 Route::resource('questions', 'QuestionController');
 Route::resource('answers', 'AnswerController');
+Route::resource('hints', 'HintController');

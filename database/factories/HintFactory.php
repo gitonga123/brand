@@ -5,6 +5,7 @@ use App\Hint;
 
 $factory->define(Hint::class, function (Faker $faker) {
     return [
-        'hint' => $faker->sentence()
+        'hint' => $faker->sentence(),
+        'description' => $faker->sentence()
     ];
 });

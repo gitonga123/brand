@@ -12,7 +12,7 @@ class Hint extends Model
      * @var array
      */
     protected $fillable = [
-        'hint'
+        'hint', 'description'
     ];
 
     /**

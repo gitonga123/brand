@@ -69,6 +69,33 @@ class ExampleTest extends TestCase
     }
 
     /**
+     * Test if an answer can be created
+     *
+     * @return void
+     */
+    public function testCanCreateHints()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->post(
+            route("hints.store"),
+            [
+                'hint' => "Kenyan",
+                'description' => "country of origin"
+            ]
+        )->assertSessionHas('success', 'Hint Created Successfully')
+            ->assertRedirect(route('hints.index'));
+
+        $this->assertDatabaseHas(
+            'answers',
+            [
+                'hint' => "Kenyan",
+                'description' => "country of origin"
+            ]
+        );
+    }
+
+    /**
      * Test if a question can be attached to a single answer
      *
      * @return void
