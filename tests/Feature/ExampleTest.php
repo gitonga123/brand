@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Question;
 use App\Answer;
+use App\Hint;
 
 class ExampleTest extends TestCase
 {
@@ -28,7 +29,7 @@ class ExampleTest extends TestCase
                 "points" => 0.05
             ]
         )->assertSessionHas('success', 'Question Created Successfully')
-            ->assertRedirect(route('question.index'));
+            ->assertRedirect(route('questions.index'));
 
         $this->assertDatabaseHas(
             'questions',
@@ -42,7 +43,7 @@ class ExampleTest extends TestCase
 
     /**
      * Test if an answer can be created
-     * 
+     *
      * @return void
      */
     public function testCanCreateAnswer()
@@ -92,8 +93,32 @@ class ExampleTest extends TestCase
     }
 
     /**
+     * Test if a question can be attached to a single/Mulitple hints
+     *
+     * @return void
+     */
+    public function testMatchQuestionToHints()
+    {
+        $this->withoutExceptionHandling();
+        $question = factory(Question::class)->create();
+        $hints = factory(Hint::class, 10)->create();
+
+        $question->hints()->sync($hints);
+
+        for ($i = 0; $i < $hints->count(); $i++) {
+            $this->assertDatabaseHas(
+                'hint_question',
+                [
+                    'question_id' => $question->id,
+                    'hint_id' => $hints[$i]->id
+                ]
+            );
+        }
+    }
+
+    /**
      * Test if a question can be updated
-     * 
+     *
      * @return void
      */
     public function testCanUpdateQuestion()
@@ -120,7 +145,7 @@ class ExampleTest extends TestCase
 
     /**
      * Test if an answer can be updated
-     * 
+     *
      * @return void
      */
     public function testCanUpdateAnswers()

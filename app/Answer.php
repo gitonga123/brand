@@ -17,7 +17,7 @@ class Answer extends Model
     ];
 
     /**
-     * The Answers that long to the questions
+     * The Answers that belong to the questions
      */
     public function questions()
     {
