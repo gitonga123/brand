@@ -24,8 +24,7 @@ class HintController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-    }
+    { }
 
     /**
      * Store a newly created resource in storage.
@@ -33,10 +32,10 @@ class HintController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateHintRequest $request)
     {
         $request->storeHint();
-        session()->flash('success', 'Hints Created Successfully');
+        session()->flash('success', 'Hint Created Successfully');
         return redirect()->route('hints.index');
     }
 
@@ -71,7 +70,11 @@ class HintController extends Controller
      */
     public function update(Request $request, Hint $hint)
     {
-        //
+        $input = $request->only('hint', 'description');
+        $hint->fill($input)->save();
+
+        session()->flash('success', "Hint Updated Successfully");
+        return redirect()->route('hints.show', ['hint', $hint->id]);
     }
 
     /**

@@ -13,9 +13,12 @@ class CreateDescriptionColumHint extends Migration
      */
     public function up()
     {
-        Schema::table('hints', function (Blueprint $table) {
-            $table->text('description');
-        });
+        Schema::table(
+            'hints',
+            function (Blueprint $table) {
+                $table->text('description')->default('');
+            }
+        );
     }
 
     /**
@@ -25,8 +28,11 @@ class CreateDescriptionColumHint extends Migration
      */
     public function down()
     {
-        Schema::table('hints', function (Blueprint $table) {
-            $table->dropColumn('description');
-        });
+        Schema::table(
+            'hints',
+            function (Blueprint $table) {
+                $table->dropColumn('description');
+            }
+        );
     }
 }

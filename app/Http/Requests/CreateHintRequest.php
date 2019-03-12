@@ -26,11 +26,11 @@ class CreateHintRequest extends FormRequest
     {
         return [
             'hint' => 'required|string',
-            'description'=>'required|string',
+            'description' => 'required|string',
         ];
     }
 
-        /**
+    /**
      * Cretae a Hint
      *
      * @return void
@@ -40,6 +40,7 @@ class CreateHintRequest extends FormRequest
         Hint::create(
             [
                 'hint' => $this->hint,
+                'description' => $this->description
             ]
         );
     }

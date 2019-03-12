@@ -80,16 +80,16 @@ class ExampleTest extends TestCase
         $this->post(
             route("hints.store"),
             [
-                'hint' => "Kenyan",
+                'hint' => "American",
                 'description' => "country of origin"
             ]
         )->assertSessionHas('success', 'Hint Created Successfully')
             ->assertRedirect(route('hints.index'));
 
         $this->assertDatabaseHas(
-            'answers',
+            'hints',
             [
-                'hint' => "Kenyan",
+                'hint' => "American",
                 'description' => "country of origin"
             ]
         );
@@ -196,6 +196,36 @@ class ExampleTest extends TestCase
                 'id' => $answer->id,
                 'title' => "1983",
                 "correct" => 1
+            ]
+        );
+    }
+
+    /**
+     * Test if an answer can be updated
+     *
+     * @return void
+     */
+    public function testCanUpdateHints()
+    {
+        $this->withoutExceptionHandling();
+
+        $hint = factory(Hint::class)->create();
+
+        $this->put(
+            route('hints.update', ['hint' => $hint->id]),
+            [
+                'hint' => "American",
+                'description' => "country of origin"
+            ]
+        )->assertSessionHas('success', "Hint Updated Successfully")
+            ->assertRedirect(route('hints.show', ['hint', $hint->id]));
+
+        $this->assertDatabaseHas(
+            'hints',
+            [
+                'id' => $hint->id,
+                'hint' => "American",
+                'description' => "country of origin"
             ]
         );
     }
