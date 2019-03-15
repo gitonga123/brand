@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\QuestionAnswer;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateQuestionAnswer;
 
 class QuestionAnswerController extends Controller
 {
@@ -33,9 +34,15 @@ class QuestionAnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateQuestionAnswer $request)
     {
-        //
+        $request->storeQuestionAnswer();
+        session()->flash('success', 'Question and Answer Stored Successfully');
+
+        return redirect()->route(
+            'questions.show',
+            ['question_id' => $request->question_id]
+        );
     }
 
     /**
@@ -67,9 +74,31 @@ class QuestionAnswerController extends Controller
      * @param  \App\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QuestionAnswer $questionAnswer)
+    public function update(Request $request, $questionAnswer)
     {
-        //
+        $input = $request->only('question_id', 'answer_id');
+        $questionAnswer = QuestionAnswer::findorFail($questionAnswer);
+        if ($questionAnswer) {
+            $questionAnswer->fill($input)->save();
+
+
+            session()->flash(
+                'success',
+                'Question Plus the answer Updated Successfully'
+            );
+
+            return redirect()->route(
+                'questions.show',
+                ['question' => $questionAnswer->question_id]
+            );
+        } else {
+            session()->flash('error', 'This Question has no answer');
+
+            return redirect()->route(
+                'questions.show',
+                ['question' => $questionAnswer->question_id]
+            );
+        }
     }
 
     /**

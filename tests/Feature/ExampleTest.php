@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use App\Question;
 use App\Answer;
 use App\Hint;
+use App\QuestionAnswer;
 
 class ExampleTest extends TestCase
 {
@@ -226,6 +227,70 @@ class ExampleTest extends TestCase
                 'id' => $hint->id,
                 'hint' => "American",
                 'description' => "country of origin"
+            ]
+        );
+    }
+
+    /**
+     * Test if an Question and Answer can be created
+     * 
+     * @return void
+     */
+    public function testCanCreateQuestionAnswer()
+    {
+        $this->withoutExceptionHandling();
+        $question = factory(Question::class)->create();
+        $answer = factory(Answer::class)->create();
+
+        $this->post(
+            route('answer.store'),
+            [
+                'question_id' => $question->id,
+                'answer_id' => $answer->id
+            ]
+        )->assertSessionHas('success', 'Question and Answer Stored Successfully')
+            ->assertRedirect(route('questions.show', ['question' => $question->id]));
+        $this->assertDatabaseHas(
+            'question_answers',
+            [
+                'question_id' => $question->id,
+                'answer_id' => $answer->id
+            ]
+        );
+    }
+
+    /**
+     * test update a question and an answe
+     */
+    public function testCanUpdateQuestionAnswer()
+    {
+        $this->withExceptionHandling();
+        $questionAnswer = factory(QuestionAnswer::class)->create();
+        $this->put(
+            route(
+                'answer.update',
+                ['questionAnswer' => $questionAnswer->id]
+            ),
+            [
+                'answer_id' => 4
+            ]
+        )->assertSessionHas(
+            'success',
+            'Question Plus the answer Updated Successfully'
+        )->assertRedirect(
+            route(
+                'questions.show',
+                [
+                    'question' => $questionAnswer->id
+                ]
+            )
+        );
+
+        $this->assertDatabaseHas(
+            'question_answers',
+            [
+                'question_id' => $questionAnswer->question_id,
+                'answer_id' => 4
             ]
         );
     }

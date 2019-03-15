@@ -35,4 +35,14 @@ class Question extends Model
     {
         return $this->belongsToMany(Hint::class, 'hint_question');
     }
+
+    /**
+     * The question that has one answer
+     * 
+     * @return void
+     */
+    public function answer()
+    {
+        return $this->hasOne(QuestionAnswer::class, 'question_id');
+    }
 }

@@ -26,4 +26,14 @@ class Answer extends Model
             'answer_question'
         )->withPivot('correct_answer')->withTimestamps();
     }
+
+    /**
+     * The answer that belong to the question
+     * 
+     * @return void
+     */
+    public function question()
+    {
+        return $this->hasOne(QuestionAnswer::class, 'answer_id');
+    }
 }
