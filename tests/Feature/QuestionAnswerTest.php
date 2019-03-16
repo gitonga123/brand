@@ -294,4 +294,49 @@ class QuestionAnswerTest extends TestCase
             ]
         );
     }
+
+    /**
+     * Test if Levels can be created
+     * 
+     * @return void
+     */
+    public function testCanCreateLevel()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->post(
+            route('levels.store'),
+            [
+                'level' => 'Very Easy'
+            ]
+        )->assertSessionHas('success', 'Level Created Successfully')
+            ->assertRedirect(route('levels.index'));
+    }
+
+    /**
+     * Test if Levels Can be Updated
+     * 
+     * @return void
+     */
+    public function testCanUpdateLevel()
+    {
+        $this->withoutExceptionHandling();
+
+        $level = factory(\App\Level::class)->create();
+
+        $this->put(
+            route('levels.update', ['levels' => $level->id]),
+            [
+                'level' => 'Testing if Updated',
+            ]
+        )->assertSessionHas('success', 'Level Updated Successfully')
+            ->assertRedirect(route('levels.show', ['levels', $level->id]));
+        $this->assertDatabaseHas(
+            'levels',
+            [
+                'id' => $level->id,
+                'level' => 'Testing if Updated'
+            ]
+        );
+    }
 }

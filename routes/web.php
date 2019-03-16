@@ -48,3 +48,5 @@ Route::post(
     'results/get',
     'ResultsController@getResult'
 )->name('result.get');
+
+Route::resource('levels', 'LevelController');

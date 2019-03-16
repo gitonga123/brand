@@ -16,7 +16,7 @@ class AlterTableTrackerAddColumnPoint extends Migration
         Schema::table(
             'trackers',
             function (Blueprint $table) {
-                $table->float('points');
+                $table->float('points')->default(1.002);
             }
         );
     }
