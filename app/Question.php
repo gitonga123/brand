@@ -45,4 +45,14 @@ class Question extends Model
     {
         return $this->hasOne(QuestionAnswer::class, 'question_id');
     }
+
+    /**
+     * The Question that is already answered
+     * 
+     * @return void
+     */
+    public function tracker()
+    {
+        return $this->hasMany(Tracker::class, 'question_id');
+    }
 }

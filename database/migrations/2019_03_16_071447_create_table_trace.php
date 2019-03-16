@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionAnswersTable extends Migration
+class CreateTableTrace extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,12 @@ class CreateQuestionAnswersTable extends Migration
     public function up()
     {
         Schema::create(
-            'question_answers',
+            'traces',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('question_id')->unsigned();
-                $table->integer('answer_id')->unsigned();
-                $table->foreign('question_id')->references('id')->on('questions');
-                $table->foreign('answer_id')->references('id')->on('answers');
+                $table->integer('tracker_id')->unsigned();
+                $table->integer('user_id')->unsigned();
+                $table->integer('trace')->unsigned();
                 $table->timestamps();
             }
         );
@@ -33,6 +32,6 @@ class CreateQuestionAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_answers');
+        Schema::dropIfExists('trace');
     }
 }

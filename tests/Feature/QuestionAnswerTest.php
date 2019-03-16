@@ -10,7 +10,7 @@ use App\Answer;
 use App\Hint;
 use App\QuestionAnswer;
 
-class ExampleTest extends TestCase
+class QuestionAnswerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
     /**

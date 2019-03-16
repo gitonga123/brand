@@ -39,3 +39,12 @@ Route::resource('questions', 'QuestionController');
 Route::resource('answers', 'AnswerController');
 Route::resource('hints', 'HintController');
 Route::resource('question/answer', 'QuestionAnswerController');
+Route::post(
+    'results/submit',
+    'ResultsController@checkQuestionAnswer'
+)->name('result.submit');
+
+Route::post(
+    'results/get',
+    'ResultsController@getResult'
+)->name('result.get');

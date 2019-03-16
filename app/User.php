@@ -34,4 +34,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the Successfully answered Question
+     * 
+     * @return void
+     */
+    public function tracker()
+    {
+        return $this->hasMany(Tracker::class, 'user_id');
+    }
 }
