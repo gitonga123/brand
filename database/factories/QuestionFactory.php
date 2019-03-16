@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Question;
+use App\Level;
 
 $factory->define(
     Question::class,
@@ -9,7 +10,8 @@ $factory->define(
         return [
             'title' => $faker->paragraph(1),
             'published' => random_int(1, 2),
-            'points' => $faker->randomDigit
+            'points' => $faker->randomDigit,
+            'level_id' => factory(Level::class)->create()->id
         ];
     }
 );

@@ -55,4 +55,12 @@ class Question extends Model
     {
         return $this->hasMany(Tracker::class, 'question_id');
     }
+
+    /**
+     * Get the Level of Question
+     */
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id', 'id');
+    }
 }

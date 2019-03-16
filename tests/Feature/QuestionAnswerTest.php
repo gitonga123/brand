@@ -9,6 +9,7 @@ use App\Question;
 use App\Answer;
 use App\Hint;
 use App\QuestionAnswer;
+use App\Level;
 
 class QuestionAnswerTest extends TestCase
 {
@@ -322,7 +323,7 @@ class QuestionAnswerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $level = factory(\App\Level::class)->create();
+        $level = factory(Level::class)->create();
 
         $this->put(
             route('levels.update', ['levels' => $level->id]),
@@ -336,6 +337,34 @@ class QuestionAnswerTest extends TestCase
             [
                 'id' => $level->id,
                 'level' => 'Testing if Updated'
+            ]
+        );
+    }
+
+    /**
+     * Test if Levels has Questions
+     * 
+     * @return void
+     */
+    public function testCanGetQuestions()
+    {
+        $this->withoutExceptionHandling();
+        $level = factory(Level::class)->create();
+        $this->assertEmpty($level->questions);
+        $question = factory(Question::class)->create();
+        $this->assertDatabaseHas(
+            'questions',
+            [
+                'id' => $question->id,
+                'level_id' => $question->level_id,
+                'title' => $question->title
+            ]
+        );
+        $this->assertDatabaseHas(
+            'levels',
+            [
+                'level' => $question->level->level,
+                'id' => $question->level->id
             ]
         );
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Question;
 
 class Level extends Model
 {
@@ -14,4 +15,14 @@ class Level extends Model
     protected $fillable = [
         'level'
     ];
+
+    /**
+     * Get the Question
+     * 
+     * @return void
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }
