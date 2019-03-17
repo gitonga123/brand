@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Answer;
+use App\Question;
+use App\Hint;
+use App\Level;
+use App\QuestionAnswer;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,11 +17,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Get all the Questions attaching up to 3 random answers to each user
-        $answers = App\Answer::all();
+        // create users
+        factory(User::class, 500)->create();
+        // Create Levels
+        $level = factory(Level::class, 5)->create();
+        // Create Questions
+        $questions = factory(Question::class, 1000)->create();
+        // create Answers
+        $answers = factory(Answer::class, 1500)->create();
 
-        // Populate the pivot table
-        App\Question::all()->each(
+        $answers = Answer::all();
+        // Get all the Questions attaching up to 3 random answers to each user
+
+        Question::all()->each(
             function ($question) use ($answers) {
                 $question->answers()->attach(
                     $answers->random(rand(1, 5))->pluck('id')->toArray()
@@ -23,16 +37,20 @@ class DatabaseSeeder extends Seeder
             }
         );
 
+        // create hints
+        factory(Hint::class, 5000)->create();
         // Get all the question attaching up to 3 random hints to each user
-        $hints = App\Hint::all();
+        $hints = Hint::all();
 
         // Populate the pivot table
-        App\Question::all()->each(
+        Question::all()->each(
             function ($question) use ($hints) {
                 $question->hints()->attach(
                     $hints->random(rand(1, 5))->pluck('id')->toArray()
                 );
             }
         );
+
+        factory(QuestionAnswer::class, 500);
     }
 }

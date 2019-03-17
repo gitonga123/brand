@@ -23,7 +23,7 @@ class Question extends Model
      */
     public function answers()
     {
-        return $this->belongsToMany(Answer::class, 'answer_question');
+        return $this->belongsToMany(AnswerQuestion::class, 'answer_question');
     }
 
     /**
@@ -58,9 +58,21 @@ class Question extends Model
 
     /**
      * Get the Level of Question
+     * 
+     * @return void
      */
     public function level()
     {
         return $this->belongsTo(Level::class, 'level_id', 'id');
+    }
+
+    /**
+     * Get the Quiz
+     * 
+     * @return void
+     */
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
     }
 }

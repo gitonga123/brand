@@ -11,7 +11,7 @@ $factory->define(
             'title' => $faker->paragraph(1),
             'published' => random_int(1, 2),
             'points' => $faker->randomDigit,
-            'level_id' => factory(Level::class)->create()->id
+            'level_id' => Level::find($faker->numberBetween(1, 4))
         ];
     }
 );

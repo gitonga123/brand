@@ -33,7 +33,7 @@ class ResultsController extends Controller
             $user->id
         );
 
-        $this->tracer($tracker, $user->id, 6066);
+        $this->tracer($tracker, $user->id, $request->quiz_id);
         return response()->json(['success' => true, 'answer' => true]);
     }
 

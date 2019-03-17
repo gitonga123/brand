@@ -261,7 +261,9 @@ class QuestionAnswerTest extends TestCase
     }
 
     /**
-     * test update a question and an answe
+     * Test update a question and an answer
+     * 
+     * @return void
      */
     public function testCanUpdateQuestionAnswer()
     {

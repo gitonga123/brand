@@ -50,3 +50,5 @@ Route::post(
 )->name('result.get');
 
 Route::resource('levels', 'LevelController');
+
+Route::get('composer/{level}', 'QuizController@entry');
