@@ -18,13 +18,11 @@ class Answer extends Model
 
     /**
      * The Answers that belong to the questions
-     * 
-     * @return void
      */
     public function questions()
     {
         return $this->belongsToMany(
-            AnswerQuestion::class,
+            Question::class,
             'answer_question'
         )->withPivot('correct_answer')->withTimestamps();
     }

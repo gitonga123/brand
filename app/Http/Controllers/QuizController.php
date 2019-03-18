@@ -22,13 +22,11 @@ class QuizController extends Controller
         // $level = $request->level;
         $level = Level::findOrFail($level);
 
-        $quiz_id = 91;
+        $quiz_id = $this->compose($level);
         $quiz = new Quiz();
         $questions = $this->questions($quiz->getQuestions($quiz_id));
 
-        foreach ($questions as $question) {
-            dd($question->answers);
-        }
+        return view('quiz.start', compact('questions'));
     }
     /**
      * Compose the kind of questions to ask
@@ -67,15 +65,14 @@ class QuizController extends Controller
      * Return Questions Related to that quiz
      *
      * @param mixed $quizzes
-     * @return array
+     * @return mixed
      */
-    public function questions($quizzes): array
+    public function questions($quizzes)
     {
         $questions = array();
         foreach ($quizzes as $quiz) {
             $questions[] = $quiz->questions;
         }
-
-        return $questions;
+        return collect($questions);
     }
 }

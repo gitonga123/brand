@@ -23,7 +23,7 @@ class Question extends Model
      */
     public function answers()
     {
-        return $this->belongsToMany(AnswerQuestion::class, 'answer_question');
+        return $this->belongsToMany(Answer::class, 'answer_question');
     }
 
     /**

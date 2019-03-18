@@ -44,7 +44,7 @@ class ExampleTest extends TestCase
             route('result.get'),
             [
                 'user_id' => 1,
-                'code' => 6066
+                'code' => 91
             ]
         )->assertSuccessful();
     }
