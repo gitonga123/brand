@@ -20,12 +20,12 @@ class CreatePlayersTable extends Migration
                 $table->name('id');
                 $table->string('emoji');
                 $table->integer('competition_id')->unsigned();
-                $table->integer('country')->unsigned();
-                $table->integer('continent')->unsigned();
+                $table->integer('country_id')->unsigned();
+                $table->integer('continent_id')->unsigned();
                 $table->timestamps();
-                $table->foreign('competition')->references('competitions')->on('id');
-                $table->foreign('country')->references('countries')->on('id');
-                $table->foreign('continent')->references('continents')->on('id');
+                $table->foreign('competition_id')->references('competitions')->on('id');
+                $table->foreign('country_id')->references('countries')->on('id');
+                $table->foreign('continent_id')->references('continents')->on('id');
             }
         );
     }
