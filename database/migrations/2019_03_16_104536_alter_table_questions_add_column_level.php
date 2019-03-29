@@ -17,7 +17,7 @@ class AlterTableQuestionsAddColumnLevel extends Migration
             'questions',
             function (Blueprint $table) {
                 $table->integer('level_id')->unsigned()->default(1);
-                // $table->foreign('level_id')->references('id')->on('levels');
+                $table->foreign('level_id')->references('id')->on('levels');
             }
         );
     }

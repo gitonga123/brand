@@ -25,14 +25,14 @@ class CreateUserSettingsTable extends Migration
                 $table->integer('player_id')->unsigned();
                 $table->integer('country_id')->unsigned();
                 $table->integer('user_id')->unsigned();
-                $table->foreign('level_id')->references('levels')->on('id');
-                $table->foreign('sport_id')->references('sports')->on('id');
-                $table->foreign('continent_id')->references('continents')->on('id');
-                $table->foreign('country_id')->references('countries')->on('id');
+                $table->foreign('level_id')->references('id')->on('levels');
+                $table->foreign('sport_id')->references('id')->on('sports');
+                $table->foreign('continent_id')->references('id')->on('continents');
+                $table->foreign('country_id')->references('id')->on('countries');
                 $table->foreign('competition_id')
-                    ->references('competitions')->on('id');
-                $table->foreign('player_id')->references('players')->on('id');
-                $table->foreign('user_id')->references('users')->on('id');
+                    ->references('id')->on('competitions');
+                $table->foreign('player_id')->references('id')->on('players');
+                $table->foreign('user_id')->references('id')->on('users');
                 $table->timestamps();
             }
         );

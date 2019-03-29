@@ -20,9 +20,10 @@ class AlterTrackerAddColumns extends Migration
                 $table->integer('answer_id')->unsigned()->default(1);
                 $table->boolean('correct')->default(1);
                 $table->boolean('user_id')->unsigned()->default(1);
-                // $table->foreign('question_id')->references('id')->on('questions');
-                // $table->foreign('user_id')->references('id')->on('users');
-                // $table->foreign('answer_id')->references('id')->on('answers');
+
+                $table->foreign('question_id')->references('id')->on('questions');
+                $table->foreign('user_id')->references('id')->on('users');
+                $table->foreign('answer_id')->references('id')->on('answers');
             }
         );
     }

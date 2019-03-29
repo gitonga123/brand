@@ -13,10 +13,16 @@ class CreateQuestionTFsTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_t_fs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
+        Schema::create(
+            'question_t_fs',
+            function (Blueprint $table) {
+                $table->increments('id');
+                $table->text('title')->nullable(false);
+                $table->integer('published')->unsigned()->nullable(false);
+                $table->float('points')->nullable(false);
+                $table->timestamps();
+            }
+        );
     }
 
     /**
