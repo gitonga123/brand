@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\UserSetting;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserSettingsRequest;
+use App\Level;
 
 class UserSettingController extends Controller
 {
@@ -33,9 +35,12 @@ class UserSettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserSettingsRequest $request)
     {
-        //
+        $user_id = 4;
+        $request->createSetting($user_id);
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -61,15 +66,18 @@ class UserSettingController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update Level the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserSetting  $userSetting
+     * @param  \App\Level $level
+     * @param  \App\User $user
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserSetting $userSetting)
+    public function updateLevel(Level $level, User $user)
     {
-        //
+        $user_level = $level->attach($user->id);
+
+        dd($user_level);
     }
 
     /**

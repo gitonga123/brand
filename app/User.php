@@ -44,4 +44,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tracker::class, 'user_id');
     }
+
+    /**
+     * The Level Belongs to Many User
+     *
+     * @return void
+     */
+    public function level()
+    {
+        return $this->belongsToMany(Level::class, 'level_user');
+    }
 }

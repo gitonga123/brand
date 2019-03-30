@@ -37,4 +37,14 @@ class Level extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    /**
+     * The User Belongs to Many Levels
+     *
+     * @return void
+     */
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'level_user');
+    }
 }
