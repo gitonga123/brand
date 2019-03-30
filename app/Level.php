@@ -45,6 +45,6 @@ class Level extends Model
      */
     public function user()
     {
-        return $this->belongsToMany(User::class, 'level_user');
+        return $this->belongsToMany(User::class, 'level_user')->withTimestamps();
     }
 }

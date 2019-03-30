@@ -12,12 +12,7 @@ class UserSetting extends Model
      * @var array
      */
     protected $fillable = [
-        'level_id',
-        'sport_id',
-        'continent_id',
-        'country_id',
-        'competition_id',
-        'player_id',
+        'date_format',
         'user_id'
     ];
 }

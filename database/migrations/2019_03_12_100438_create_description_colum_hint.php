@@ -16,7 +16,7 @@ class CreateDescriptionColumHint extends Migration
         Schema::table(
             'hints',
             function (Blueprint $table) {
-                $table->text('description');
+                $table->text('description')->default('');
             }
         );
     }

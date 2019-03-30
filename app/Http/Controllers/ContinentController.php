@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Continent;
 use Illuminate\Http\Request;
+use Khsing\World\World;
 
 class ContinentController extends Controller
 {
@@ -14,7 +15,8 @@ class ContinentController extends Controller
      */
     public function index()
     {
-        //
+        $continent = World::getByCode('cn');
+        return $continent->emoji;
     }
 
     /**
@@ -45,9 +47,7 @@ class ContinentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Continent $continent)
-    {
-        //
-    }
+    { }
 
     /**
      * Show the form for editing the specified resource.

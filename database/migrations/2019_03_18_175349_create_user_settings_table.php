@@ -18,20 +18,7 @@ class CreateUserSettingsTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('date_format')->default('dd/mm/Y');
-                $table->integer('level_id')->unsigned();
-                $table->integer('sport_id')->unsigned();
-                $table->integer('continent_id')->unsigned();
-                $table->integer('competition_id')->unsigned();
-                $table->integer('player_id')->unsigned();
-                $table->integer('country_id')->unsigned();
-                $table->integer('user_id')->unsigned();
-                $table->foreign('level_id')->references('id')->on('levels');
-                $table->foreign('sport_id')->references('id')->on('sports');
-                $table->foreign('continent_id')->references('id')->on('continents');
-                $table->foreign('country_id')->references('id')->on('countries');
-                $table->foreign('competition_id')
-                    ->references('id')->on('competitions');
-                $table->foreign('player_id')->references('id')->on('players');
+                $table->integer('user_id')->unsigned()->unique();;
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->timestamps();
             }

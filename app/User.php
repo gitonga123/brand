@@ -52,6 +52,28 @@ class User extends Authenticatable
      */
     public function level()
     {
-        return $this->belongsToMany(Level::class, 'level_user');
+        return $this->belongsToMany(Level::class, 'level_user')->withTimestamps();
+    }
+
+    /**
+     * The Countries Belongs to Many User
+     *
+     * @return void
+     */
+    public function countries()
+    {
+        return $this->belongsToMany(Country::class, 'country_user')
+            ->withTimestamps();
+    }
+
+    /**
+     * The Continents Belongs to Many User
+     *
+     * @return void
+     */
+    public function continents()
+    {
+        return $this->belongsToMany(Continent::class, 'continent_user')
+            ->withTimestamps();
     }
 }

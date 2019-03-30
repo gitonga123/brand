@@ -6,6 +6,9 @@ use App\UserSetting;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserSettingsRequest;
 use App\Level;
+use App\User;
+use App\Country;
+use App\Continent;
 
 class UserSettingController extends Controller
 {
@@ -35,12 +38,14 @@ class UserSettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserSettingsRequest $request)
+    public function store(UserSettingsRequest $request, $user)
     {
-        $user_id = 4;
-        $request->createSetting($user_id);
-
-        return response()->json(['success' => true]);
+        $result = $request->createSetting($user);
+        if ($result) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
     }
 
     /**
@@ -75,9 +80,36 @@ class UserSettingController extends Controller
      */
     public function updateLevel(Level $level, User $user)
     {
-        $user_level = $level->attach($user->id);
+        $level->user()->attach($user->id);
+        return response()->json(['success' => true]);
+    }
 
-        dd($user_level);
+    /**
+     * Update Level the specified resource in storage.
+     *
+     * @param  \App\Country $country
+     * @param  \App\User $user
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCountry(Country $country, User $user)
+    {
+        $country->user()->attach($user->id);
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * Update Level the specified resource in storage.
+     *
+     * @param  \App\Continent $continent
+     * @param  \App\User $user
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function updateContinent(Continent $continent, User $user)
+    {
+        $continent->user()->attach($user->id);
+        return response()->json(['success' => true]);
     }
 
     /**

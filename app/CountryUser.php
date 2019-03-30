@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Continent extends Model
+class CountryUser extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,26 +12,26 @@ class Continent extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'code'
+        'country_id', 'user_id'
     ];
 
     /**
-     * Continent has Many Countries
+     * A level belongs to Level
      * 
      * @return void
      */
-    public function countries()
+    public function country()
     {
         return $this->belongsTo(Country::class);
     }
 
     /**
-     * The User Belongs to Many Countries
-     *
+     * An user belongs to User
+     * 
      * @return void
      */
     public function user()
     {
-        return $this->belongsToMany(User::class, 'continent_user')->withTimestamps();
+        return $this->belongsTo(User::class);
     }
 }

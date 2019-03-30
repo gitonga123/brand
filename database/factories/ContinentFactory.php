@@ -7,7 +7,7 @@ $factory->define(
     Continent::class,
     function (Faker $faker) {
         return [
-            'title' => $faker->continent
+            'title' => $faker->country
         ];
     }
 );

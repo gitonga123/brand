@@ -25,7 +25,8 @@ class UserSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'date_format' => 'required|string'
+            'date_format' => 'required|string',
+            'user_id' => 'unique:user_settings'
         ];
     }
 
@@ -33,15 +34,18 @@ class UserSettingsRequest extends FormRequest
      * Store user setting
      * 
      * @param int $user_id
+     * 
      * @return void
      */
-    public function createSetting($user_id)
+    public function createSetting(int $user_id)
     {
-        UserSetting::create(
+        $result = UserSetting::create(
             [
-                'date_format' => $this->data_format,
+                'date_format' => $this->date_format,
                 'user_id' => $user_id
             ]
         );
+
+        return $result;
     }
 }

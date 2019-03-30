@@ -19,6 +19,8 @@ class CreateCountriesTable extends Migration
                 $table->increments('id');
                 $table->string('title')->unique();
                 $table->string('emoji');
+                $table->integer('continent_id')->unsigned();
+                $table->foreign('continent_id')->references('id')->on('continents');
                 $table->timestamps();
             }
         );

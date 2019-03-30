@@ -12,6 +12,26 @@ class Country extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'emoji'
+        'title', 'emoji', 'continent_id'
     ];
+
+    /**
+     * The User Belongs to Many Countries
+     *
+     * @return void
+     */
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'country_user')->withTimestamps();
+    }
+
+    /**
+     * Belongs to A Certain Continent
+     * 
+     * @return void
+     */
+    public function continent()
+    {
+        return $this->hasMany(Continent::class);
+    }
 }

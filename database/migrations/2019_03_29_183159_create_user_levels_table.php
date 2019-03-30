@@ -17,8 +17,10 @@ class CreateUserLevelsTable extends Migration
             'level_user',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('user_id');
-                $table->integer('level_id');
+                $table->integer('user_id')->unsigned();
+                $table->integer('level_id')->unsigned();
+                $table->foreign('user_id')->references('id')->on('users');
+                $table->foreign('level_id')->references('id')->on('levels');
                 $table->timestamps();
             }
         );
