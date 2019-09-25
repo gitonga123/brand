@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Http\Requests\CreateQuestionRequest;
+use App\Http\Resources\QuestionsCollection;
 
 class QuestionController extends Controller
 {
@@ -15,7 +16,14 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::getQuizzes()->paginate(10);
+        if ($questions) {
+            return new QuestionsCollection($questions);
+        } else {
+            return response()->json(
+                ['success' => false, "questions" => []]
+            );
+        }
     }
 
     /**

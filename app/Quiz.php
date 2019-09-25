@@ -17,7 +17,7 @@ class Quiz extends Model
 
     /**
      * Quiz has multiple questions
-     * 
+     *
      * @return void
      */
     public function questions()
@@ -26,7 +26,7 @@ class Quiz extends Model
     }
 
     /**
-     * Find quizes based on Quiz Id
+     * Find quizzes based on Quiz Id
      *
      * @param int $quiz_id
      * @return void

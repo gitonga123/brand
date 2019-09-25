@@ -38,7 +38,7 @@ class Question extends Model
 
     /**
      * The question that has one answer
-     * 
+     *
      * @return void
      */
     public function answer()
@@ -48,7 +48,7 @@ class Question extends Model
 
     /**
      * The Question that is already answered
-     * 
+     *
      * @return void
      */
     public function tracker()
@@ -58,7 +58,7 @@ class Question extends Model
 
     /**
      * Get the Level of Question
-     * 
+     *
      * @return void
      */
     public function level()
@@ -68,11 +68,25 @@ class Question extends Model
 
     /**
      * Get the Quiz
-     * 
+     *
      * @return void
      */
     public function quiz()
     {
         return $this->belongsTo(Quiz::class);
+    }
+
+    /**
+     * Get Active Questions Without Difficulty
+     *
+     * @return void
+     **/
+    public function scopeGetQuizzes($query)
+    {
+        return $query->where(
+            'published',
+            '=',
+            true
+        );
     }
 }

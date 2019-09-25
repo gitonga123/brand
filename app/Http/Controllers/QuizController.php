@@ -11,7 +11,7 @@ class QuizController extends Controller
 {
 
     /**
-     * Get the user prefences and return the questions and answers.
+     * Get the user preferences and return the questions and answers.
      * Currently working on level of difficulty first
      *
      * @param Request $request
@@ -28,11 +28,12 @@ class QuizController extends Controller
 
         return view('quiz.start', compact('questions'));
     }
+
     /**
      * Compose the kind of questions to ask
      *
      * @param \App\Level $level
-     * 
+     *
      * @return float $quiz_id
      */
     protected function compose(Level $level): float
@@ -45,7 +46,7 @@ class QuizController extends Controller
         }
         // use user id
         // there is a near zero chance that a user will likely face the same question twice
-        // this will be impleted in future
+        // this will be implemented in future
         $user = User::find(4);
         $quiz_id = array_sum($quiz) + $user->id;
 

@@ -18,7 +18,7 @@ class Answer extends Model
 
     /**
      * The Answers that belong to the questions
-     * 
+     *
      * @return void
      */
     public function questions()

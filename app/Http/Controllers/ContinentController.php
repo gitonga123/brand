@@ -15,7 +15,7 @@ class ContinentController extends Controller
      */
     public function index()
     {
-        $continent = World::getByCode('cn');
+        $continent = World::getByCode('cmr');
         return $continent->emoji;
     }
 
